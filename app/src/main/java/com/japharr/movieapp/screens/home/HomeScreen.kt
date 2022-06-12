@@ -22,10 +22,10 @@ import com.japharr.movieapp.navigation.MovieScreens
 @Composable
 fun HomeScreen(navController: NavController) {
     Scaffold(topBar = {
-        TopAppBar(backgroundColor = Color.Magenta, elevation = 5.dp) {
+        TopAppBar(backgroundColor = Color.LightGray, elevation = 5.dp) {
             Text(text = "Movies")
         }
-    },) {
+    }) {
         MainContent(navController)
     }
 }
@@ -36,9 +36,9 @@ fun MainContent(navController: NavController, movieList: List<String> = listOf("
     Column(modifier = Modifier.padding(11.dp)) {
         LazyColumn() {
             items(items = movieList) {
-                MovieRow(it) { movie ->
+                MovieRow(movie = it) { movie ->
                     Log.d("Tag", "$movie is clicked")
-                    navController.navigate(MovieScreens.DetailsScreen.name)
+                    navController.navigate(route = MovieScreens.DetailsScreen.name + "/$movie")
                 }
             }
         }
